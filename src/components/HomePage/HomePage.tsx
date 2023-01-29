@@ -41,6 +41,19 @@ const HomePage = () => {
       });
   }, []);
 
+  const names = [
+    {
+      firstName: "John",
+      lastName: "Smith",
+    },
+    {
+      firstName: "Anna",
+      lastName: "Smith",
+    },
+  ];
+
+  //   <p>John Smith</p>
+  //   <p>Anna Smith</p>
   return (
     <>
       <Typography
@@ -50,9 +63,26 @@ const HomePage = () => {
       >
         Today's hottest news
       </Typography>
-      <Article article={articles[0]} />
+      {/* RENDEROWANIE WARUNKOWE TYP I */}
+      {/* CONDITIONAL RENDERING */}
+      {/* RENDEROWANIE W PĘTLI */}
+      {/* {names.map((el) => {
+        return (
+          <h2>
+            {el.firstName} {el.lastName}
+          </h2>
+        );
+      })} */}
+      {articles.length !== 0 &&
+        articles.map((el, i) => {
+          return <Article article={el} key={i} />;
+        })}
     </>
   );
 };
 
 export default HomePage;
+
+// const [clicked, setClicked] = useState(false);
+/* <button onClick={() => setClicked(!clicked)}>Click</button>
+{clicked && <h1>TO POCHODZI Z RENDEROWANIA WARUNKOWEGO</h1>} */
