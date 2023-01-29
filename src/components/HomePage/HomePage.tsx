@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import { API_KEY } from "../../helpers/api";
-
+import Article from "../Article/Article";
 export interface ArticleObj {
   title: string;
   url: string;
@@ -50,10 +50,9 @@ const HomePage = () => {
       >
         Today's hottest news
       </Typography>
+      <Article article={articles[0]} />
     </>
   );
 };
 
 export default HomePage;
-
-
