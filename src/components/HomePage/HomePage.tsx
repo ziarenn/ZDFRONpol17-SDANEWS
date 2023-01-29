@@ -1,9 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import { API_KEY } from "../../helpers/api";
+
+export interface ArticleObj {
+  title: string;
+  url: string;
+  urlToImage: string;
+}
+
 const HomePage = () => {
-  let x = 0;
+  const [articles, setArticles] = useState<ArticleObj[] | []>([]);
   // 1. useEffect to hook który służy do podpinania się pod konkretny moment cyklu życia komponentu.
   // 2. Cykl życia komponentu:
   // a) zamontowanie (wyświetlenie)
@@ -25,9 +32,13 @@ const HomePage = () => {
     // Może nie działać przez strefy czasowe
     axios
       .get(
-        `https://newsapi.org/v2/everything?q=world&language=en&sortBy=popularity&from=${"rok"}-${"miesiac"}-${"dzien"}&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/everything?q=world&language=en&sortBy=popularity&from=${year}-${
+          month < 10 ? `0${month}` : month
+        }-${day < 10 ? `0${day}` : day}&apiKey=${API_KEY}`
       )
-      .then((data) => console.log(data.data.articles));
+      .then((data) => {
+        setArticles(data.data.articles);
+      });
   }, []);
 
   return (
@@ -44,3 +55,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
