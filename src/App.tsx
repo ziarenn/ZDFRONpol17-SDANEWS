@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CustomerForm from "./components/CustomerForm/CustomerForm";
 
 function App() {
   const [x, setX] = useState();
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/customer" element={<CustomerForm />} />
         </Routes>
         {/* STATIC */}
       </BrowserRouter>
