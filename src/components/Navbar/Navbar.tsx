@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "Search"];
 
@@ -58,11 +59,33 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map((page, i) => {
+                // index 0: Home
+                // index 1: Search
+                if (i === 0) {
+                  return (
+                    <Link
+                      to="/"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={page} onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{page}</Typography>
+                      </MenuItem>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link
+                      to="/search"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={page} onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{page}</Typography>
+                      </MenuItem>
+                    </Link>
+                  );
+                }
+              })}
             </Menu>
           </Box>
           <Typography
