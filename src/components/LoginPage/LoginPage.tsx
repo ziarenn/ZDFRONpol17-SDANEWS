@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Typography, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../helpers/firebaseConfig";
 interface LoginFormValues {
   email: string;
   password: string;
@@ -12,7 +13,14 @@ const inputStyles = { display: "block", mx: "auto", my: ".5rem" };
 const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginFormValues>();
 
-  const logUserIn = (data: LoginFormValues) => {};
+  const logUserIn = (data: LoginFormValues) => {
+    // Sign in new users
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        console.log("successfully signed user in");
+      })
+      .catch((err) => console.error(err.message));
+  };
 
   return (
     <form

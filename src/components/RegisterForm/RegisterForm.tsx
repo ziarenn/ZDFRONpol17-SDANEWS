@@ -1,6 +1,8 @@
 import { Button, TextField, Typography } from "@mui/material";
 // 1. Import useForm
 import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../helpers/firebaseConfig";
 import React from "react";
 
 // 4. Stworzenie interfejsu do formularza
@@ -19,7 +21,19 @@ const RegisterForm = () => {
   // 3. Stworzenie funkcji do onSubmit
   // Pod parametr data będą wpadały wszystkie dane z formularza w formie obiektu
   const registerUser = (data: RegisterFormValues) => {
+    // if (data.password === data.password2) return;
+    if (data.password === data.password2) {
+      createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then(() => {
+          console.log("successfully created a user");
+        })
+        .catch((err) => console.error(err.message));
+    } else {
+      console.log("Password differ from each other");
+    }
+
     console.log(data);
+    // Sign up news users
   };
 
   const inputStyles = { display: "block", mx: "auto", my: ".5rem" };
