@@ -13,10 +13,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
-
+import { authContext } from "../../helpers/authContext";
 const pages = ["Home", "Search"];
 
 function ResponsiveAppBar() {
+  const loggedIn = React.useContext(authContext);
+  console.log("Navbar: ", loggedIn);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -107,11 +109,20 @@ function ResponsiveAppBar() {
             SDA News
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Link>
+            {loggedIn ? (
+              <Link to="/user" style={{ textDecoration: "none" }}>
+                <IconButton sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Button variant="contained">Log in</Button>
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </Container>
