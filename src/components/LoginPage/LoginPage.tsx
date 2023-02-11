@@ -3,6 +3,7 @@ import { Button, Typography, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../helpers/firebaseConfig";
+import { Link } from "react-router-dom";
 interface LoginFormValues {
   email: string;
   password: string;
@@ -46,9 +47,11 @@ const LoginPage = () => {
       <Typography variant="h6" sx={{ fontWeight: 100, textAlign: "center" }}>
         Don't have an account yet? Register now!
       </Typography>
-      <Button variant="outlined" sx={{ display: "block", mx: "auto" }}>
-        Register
-      </Button>
+      <Link to="/register" style={{ textDecoration: "none", color: "black" }}>
+        <Button variant="outlined" sx={{ display: "block", mx: "auto" }}>
+          Register
+        </Button>
+      </Link>
     </form>
   );
 };

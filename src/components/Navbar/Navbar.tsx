@@ -107,9 +107,11 @@ function ResponsiveAppBar() {
             SDA News
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <IconButton sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

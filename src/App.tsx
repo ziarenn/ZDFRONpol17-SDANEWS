@@ -30,6 +30,3 @@ function App() {
 }
 
 export default App;
-
-// 1. Na ikonie użytkownika w navbarze załóż Linka do route'a z komponentem LoginPage
-// 2. W LoginPage.tsx istnieje przycisk Register, nałóż na niego Link do route'a z komponentem RegisterForm
