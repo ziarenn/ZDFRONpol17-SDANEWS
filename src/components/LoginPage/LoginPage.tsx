@@ -15,6 +15,7 @@ const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginFormValues>();
 
   const logUserIn = (data: LoginFormValues) => {
+    console.log(123);
     // Sign in new users
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
@@ -41,6 +42,7 @@ const LoginPage = () => {
       <Button
         variant="contained"
         sx={{ display: "block", mb: "1rem", mx: "auto" }}
+        type="submit"
       >
         LOG IN
       </Button>

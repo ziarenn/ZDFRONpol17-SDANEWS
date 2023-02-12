@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { authContext } from "../../helpers/authContext";
 import { auth } from "../../helpers/firebaseConfig";
 import { signOut } from "firebase/auth";
+import ProfilePhotoForm from "../ProfilePhotoForm/ProfilePhotoForm";
 const UserPage = () => {
   const loggedIn = useContext(authContext);
 
@@ -29,6 +30,7 @@ const UserPage = () => {
           >
             Your email: {auth.currentUser.email}
           </Typography>
+          <ProfilePhotoForm />
           <Button
             onClick={() => signOut(auth)}
             variant="outlined"
