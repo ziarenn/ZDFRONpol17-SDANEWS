@@ -14,14 +14,26 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import { authContext } from "../../helpers/authContext";
+import { auth, storage } from "../../helpers/firebaseConfig";
+import { getDownloadURL, ref } from "firebase/storage";
 const pages = ["Home", "Search"];
 
 function ResponsiveAppBar() {
   const loggedIn = React.useContext(authContext);
-  console.log("Navbar: ", loggedIn);
+  const [profilePhoto, setProfilePhoto] = React.useState("");
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+
+  React.useEffect(() => {
+    if (loggedIn && auth.currentUser) {
+      const storageRef = ref(storage, `/users/${auth.currentUser.uid}/profile`);
+      getDownloadURL(storageRef)
+        .then((url) => setProfilePhoto(url))
+        .catch(() => setProfilePhoto(""));
+    }
+  }, [loggedIn]);
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -112,7 +124,7 @@ function ResponsiveAppBar() {
             {loggedIn ? (
               <Link to="/user" style={{ textDecoration: "none" }}>
                 <IconButton sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={profilePhoto} />
                 </IconButton>
               </Link>
             ) : (
