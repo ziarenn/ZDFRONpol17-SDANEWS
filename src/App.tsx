@@ -9,6 +9,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./helpers/firebaseConfig";
 import { authContext } from "./helpers/authContext";
 import UserPage from "./components/UserPage/UserPage";
+import SearchPage from "./components/SearchPage/SearchPage";
 /// CONTEXT API
 // useContext (hook) jest częścią całego narzędzie Context API
 // oprócz useContext mamy do dyspozycji funkcje createContext i komponent ContextProvider
@@ -43,6 +44,7 @@ function App() {
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/customer" element={<CustomerForm />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
           {/* STATIC */}
         </authContext.Provider>
@@ -52,4 +54,3 @@ function App() {
 }
 
 export default App;
-
